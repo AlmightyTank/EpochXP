@@ -24,7 +24,7 @@ import (`./discord/libs/commands.js`)
 import (`./discord/libs/events.js`)
 
 // Import Express App
-import App from './api/server.js'
+import App from './API/server.js'
 
 // Init & Export MySQL Connection
 export const DB = createPool({

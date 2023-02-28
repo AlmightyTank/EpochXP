@@ -97,6 +97,20 @@ export default {
                     en: "Invites",
                     he: "הזמנות"
                 }
+            },
+            whatmap: {
+                description: {
+                    en: "To help select maps for indecisive people",
+                    he: "מציג את המשתמשים בעלי הכי הרבה הזמנות"
+                },
+                command: {
+                    en: "Command",
+                    he: "משתמש"
+                },
+                map: {
+                    en: "Map",
+                    he: "הזמנות"
+                }
             }
         }
     },
