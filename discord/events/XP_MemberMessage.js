@@ -2,6 +2,7 @@ import config from '../../config.js'
 import phrases from '../../translation.js'
 import Query from '../../functions/Query.js'
 import generateXP from '../../functions/generateXP.js'
+import { client } from '../../index.js'
 import Embed from '../libs/embed.js'
 
 const delay = new Set()
@@ -71,9 +72,10 @@ export default {
 						.replace(`{bonus}`, newLevel.bonus ? newLevel.bonus : phrases.bot.xp.raiseLevel.noBonus[config.language]),
 				thumbnail: message.member.user.displayAvatarURL()
 			})
-
-			message.member.send({embeds: [Embd]})
-			message.reply({embeds: [Embd]})
+			const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+			//message.member.send({embeds: [Embd]})
+			//message.reply({embeds: [Embd]})
+			ranksChannel.send({embeds: [Embd]})
 		}
 		else
 			await Query(`UPDATE ${config.mysql.tables.xp} SET amount = ? WHERE userId = ? AND guildId = ?`, [updatedXP, message.member.user.id, message.guild.id])

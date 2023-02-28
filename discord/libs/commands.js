@@ -17,7 +17,7 @@ dotenv.config()
 const rest = new REST({ version: '9' }).setToken(process.env.BOT_TOKEN)
 
 const commands = []
-const commandFiles = readdirSync('./discord/commands').filter(file => file.endsWith('.js'))
+const commandFiles = readdirSync('./discord/commands/').filter(file => file.endsWith('.js'))
 
 for (const file of commandFiles) {
 	try {
