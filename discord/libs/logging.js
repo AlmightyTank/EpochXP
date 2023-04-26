@@ -18,8 +18,7 @@ export default async ({title, text, type = 'log'}) => {
             ]})
 
     config.logging.console &&
-        type == 'log' ?
-            console.log(chalk.green(`[LOG] ${title}:`), text) :
+        type == 'log' ? console.log(chalk.green(`[LOG] ${title}:`), text) :
                 type = 'debug' ? console.log(chalk.blue(`[DEBUG] ${title}:`), text) :
                     type = 'error' && console.log(chalk.red(`[ERROR] ${title}:`), text)
 }

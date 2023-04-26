@@ -10,7 +10,7 @@ const config = {
     },
 
     logging: {
-        discordChannel: "972229559338553361", // Channel id / NULL
+        discordChannel: "1093613654387195996", // Channel id / NULL
         console: true, // If the process should log to the console too
         mysql: true, // Log mysql queries
         invites: true, // Log the Invites System
@@ -19,6 +19,10 @@ const config = {
 
     ranks: {
         discordChannel: "972229559686676483", // Channel id / NULL
+    },
+
+    traderreset: {
+        discordChannel: "1028110120317616218", // Channel id / NULL
     },
 
     bot: {
@@ -33,9 +37,9 @@ const config = {
         },
         embedSettings: {
             // Default embed values!
-            color: "#6abc43",
-            footerText: "EpochBot#0423",
-            footerIcon: "https://yt3.ggpht.com/8VV1DKEZ3WnjUnLmpvGrZb3Kcz2cg9jlyjwv9cUcpT-V8WprHNQcYi1Cp0Qx-5COxEvCQCr1kw=s88-c-k-c0x00ffffff-no-rj-mo"
+            color: "#408cd8",
+            footerText: "EpochXP#8350",
+            footerIcon: "https://cdn.discordapp.com/avatars/1079156251189059604/82fb4e1f7d8f8f8b1a6020ae15bae71f.webp"
         },
         dev: {
             enabled: false,                  // true = enabled, false = disabled
@@ -45,19 +49,43 @@ const config = {
         main: {
 
         },
-        newroleadd: {
+        maps: {
             enabled: false,
+        },
+        voice: {
+            enabled: true,
+        },
+        setup: {
+            enabled: false,
+        },
+        invitelinks: {
+            enabled: true,
+        },
+        newroleadd: {
+            enabled: true,
             discordChannel: "972229559862849566",
             role: "972229559233695817",
         },
+        newrolerm: {
+            enabled: true,
+            discordChannel: "972229559338553362",
+        },
+        reaction: {
+            enabled: true,
+            debug: {
+                    enabled: false,
+            },
+        },
         xp: {
             enabled: true,              // true = Enable the XP System / false = Disable the XP System
+            enablevoice: true,
             createRowOnAdd: true,       // Optional! Create DB Entry for each member joining your server.
             deleteRowOnRemove: false,   // Optional! Delete DB Entry for each member leaving your server = reset his exp!
             generation: {
                 min: 10,              // Minimum XP to give for ea message
                 max: 20,              // Maximum XP to give for ea message
                 attachmentBonus: 30,  // Amount of XP to give for each attachment (pictures, etc)
+                voice: 2,
                 delay: 3 * 1000       // Seconds * Miliseconds
             },
             commands: {
@@ -65,9 +93,12 @@ const config = {
                     limit: 10
                 }
             },
+            debug: {
+                enabled: false,
+            },
             levels: {
                 enabled: true,
-                removeAllRoles: false, // true = Clear all member "levels" roles before adding the new level role, false = just give him the new level role and keep the others
+                removeAllRoles: true, // true = Clear all member "levels" roles before adding the new level role, false = just give him the new level role and keep the others
                 levels: [
                     {
                         level: 1,
@@ -78,19 +109,19 @@ const config = {
                     {
                         level: 2,                       // Level number
                         xp: 50,                         // The needed XP for this level
-                        role: null,                     // Role ID or null
+                        role: "972229559296618552",     // Role ID or null
                         bonus: null                     // Bonus as text or null
                     },
                     {
                         level: 3,
                         xp: 100,
-                        role: null,
+                        role: "972229559296618552",
                         bonus: null
                     },
                     {
                         level: 4,
                         xp: 150,
-                        role: null,
+                        role: "972229559296618552",
                         bonus: null
                     },
                     // ==================================
@@ -103,25 +134,25 @@ const config = {
                     {
                         level: 6,
                         xp: 400,
-                        role: null,
+                        role: "972229559296618553",
                         bonus: null
                     },
                     {
                         level: 7,
                         xp: 600,
-                        role: null,
+                        role: "972229559296618553",
                         bonus: null
                     },
                     {
                         level: 8,
                         xp: 800,
-                        role: null,
+                        role: "972229559296618553",
                         bonus: null
                     },
                     {
                         level: 9,
                         xp: 1050,
-                        role: null,
+                        role: "972229559296618553",
                         bonus: null
                     },
                     // ==================================
@@ -134,25 +165,25 @@ const config = {
                     {
                         level: 11,
                         xp: 1600,
-                        role: null,
+                        role: "972229559296618554",
                         bonus: null
                     },
                     {
                         level: 12,
                         xp: 1900,
-                        role: null,
+                        role: "972229559296618554",
                         bonus: null
                     },
                     {
                         level: 13,
                         xp: 2250,
-                        role: null,
+                        role: "972229559296618554",
                         bonus: null
                     },
                     {
                         level: 14,
                         xp: 2650,
-                        role: null,
+                        role: "972229559296618554",
                         bonus: null
                     },
                     {
@@ -163,216 +194,216 @@ const config = {
                     },
                     {
                         level: 16,
-                        xp: 3300,
-                        role: null,
+                        xp: 5000,
+                        role: "972229559296618555",
                         bonus: null
                     },
                     {
                         level: 17,
-                        xp: 3600,
-                        role: null,
+                        xp: 7500,
+                        role: "972229559296618555",
                         bonus: null
                     },
                     {
                         level: 18,
-                        xp: 3900,
-                        role: null,
+                        xp: 9000,
+                        role: "972229559296618555",
                         bonus: null
                     },
                     {
                         level: 19,
-                        xp: 4200,
-                        role: null,
+                        xp: 10000,
+                        role: "972229559296618555",
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 20,
-                        xp: 4500,
+                        xp: 12500,
                         role: "972229559317573672",     //Loot Goblins
                         bonus: null
                     },
                     {
                         level: 21,
-                        xp: 4900,
-                        role: null,
+                        xp: 15000,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 22,
-                        xp: 5300,
-                        role: null,
+                        xp: 17500,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 23,
-                        xp: 5700,
-                        role: null,
+                        xp: 20000,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 24,
-                        xp: 6100,
-                        role: null,
+                        xp: 22500,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 25,
-                        xp: 6500,
-                        role: null,
+                        xp: 25000,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 26,
-                        xp: 6900,
-                        role: null,
+                        xp: 27500,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 27,
-                        xp: 7200,
-                        role: null,
+                        xp: 30000,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 28,
-                        xp: 7600,
-                        role: null,
+                        xp: 32500,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     {
                         level: 29,
-                        xp: 8000,
-                        role: null,
+                        xp: 35000,
+                        role: "972229559317573672",
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 30,
-                        xp: 8400,
+                        xp: 37500,
                         role: "972229559317573673",     //A Flea Connoisseur
                         bonus: null
                     },
                     {
                         level: 31,
-                        xp: 8800,
-                        role: null,
+                        xp: 40000,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 32,
-                        xp: 9200,
-                        role: null,
+                        xp: 42500,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 33,
-                        xp: 9600,
-                        role: null,
+                        xp: 45000,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 34,
-                        xp: 10000,
-                        role: null,
+                        xp: 47500,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 35,
-                        xp: 10400,
-                        role: null,
+                        xp: 50000,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 36,
-                        xp: 10800,
-                        role: null,
+                        xp: 52500,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 37,
-                        xp: 11200,
-                        role: null,
+                        xp: 55000,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 38,
-                        xp: 11600,
-                        role: null,
+                        xp: 57500,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     {
                         level: 39,
-                        xp: 12000,
-                        role: null,
+                        xp: 60000,
+                        role: "972229559317573673",
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 40,
-                        xp: 12500,
+                        xp: 75000,
                         role: "1079866812944097300",     //Dorms Chad
                         bonus: null
                     },
                     {
                         level: 41,
-                        xp: 13000,
-                        role: null,
+                        xp: 100000,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 42,
-                        xp: 13500,
-                        role: null,
+                        xp: 125000,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 43,
-                        xp: 14000,
-                        role: null,
+                        xp: 150000,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 44,
-                        xp: 14500,
-                        role: null,
+                        xp: 175000,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 45,
-                        xp: 16000,
-                        role: null,
+                        xp: 200000,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 46,
-                        xp: 16500,
-                        role: null,
+                        xp: 300000,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 47,
-                        xp: 17000,
-                        role: null,
+                        xp: 420420,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 48,
-                        xp: 17500,
-                        role: null,
+                        xp: 500000,
+                        role: "1079866812944097300",
                         bonus: null
                     },
                     {
                         level: 49,
-                        xp: 18000,
+                        xp: 696969,
                         role: "1079867200816545822",     //Labs Defender
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 50,
-                        xp: 200000,
-                        role: null,     //
+                        xp: 100000000,
+                        role: "1079867200816545822",    //
                         bonus: null
                     },
                 ]
@@ -410,11 +441,19 @@ const config = {
     mysql: {
         tables: { // Tables Name
             xp: "EXP", // Please Change The Create Table Query Too!
-            invites: "Invites" // Please Change The Create Table Query Too!
+            invites: "Invites", // Please Change The Create Table Query Too!
+            maps: "Invites", // Please Change The Create Table Query Too!
+            voice: "Voice", // Please Change The Create Table Query Too!
+            setup: "Setup", // Please Change The Create Table Query Too!
+            invitelinks: "InviteLinks" // Please Change The Create Table Query Too!
         },
         queries: { // Create Table Queries
-            xp: "CREATE TABLE IF NOT EXISTS EXP (`guildId` VARCHAR(30) NOT NULL, `userId` VARCHAR(30) NOT NULL, `amount` INT(11) NOT NULL, `level` INT(5) NOT NULL, UNIQUE (`userId`)) ENGINE = INNODB",
-            invites: "CREATE TABLE IF NOT EXISTS Invites ( `id` INT NOT NULL AUTO_INCREMENT , `guildId` TEXT NOT NULL , `inviterId` TEXT NOT NULL , `invitedId` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = INNODB"
+            xp: "CREATE TABLE IF NOT EXISTS EXP ( `guildId` VARCHAR(30) NOT NULL , `userId` VARCHAR(30) NOT NULL, `amount` INT(11) NOT NULL, `level` INT(5) NOT NULL, UNIQUE (`userId`)) ENGINE = INNODB",
+            invites: "CREATE TABLE IF NOT EXISTS Invites ( `id` INT NOT NULL AUTO_INCREMENT , `guildId` TEXT NOT NULL , `inviterId` TEXT NOT NULL , `invitedId` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = INNODB",
+            maps: "CREATE TABLE IF NOT EXISTS Maps ( `id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = INNODB",
+            voice: "CREATE TABLE IF NOT EXISTS Voice ( `guildId` VARCHAR(30) NOT NULL , `user_id` VARCHAR(50) NOT NULL , `join_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP , UNIQUE (`user_id`)) ENGINE = INNODB",
+            setup: "CREATE TABLE IF NOT EXISTS Setup ( `guildId` VARCHAR(30) NOT NULL , `logging_channelID` VARCHAR(50) NOT NULL , `rank_channelID` VARCHAR(50) NOT NULL , `newrankrole_channelID` VARCHAR(50) NOT NULL , `newrankrole_roleID` VARCHAR(50) NOT NULL , `reactiontoggle` NUMBER(1) , `newroletoggle` NUMBER(1) , `voicexptoggle` NUMBER(1) , `xptoggle` NUMBER(1) , UNIQUE (`guildId`)) ENGINE = INNODB",
+            invitelinks: "CREATE TABLE IF NOT EXISTS InviteLinks (`id` INT NOT NULL AUTO_INCREMENT, `user_id` VARCHAR(255) NOT NULL, `name` VARCHAR(255) NOT NULL, `relationship` VARCHAR(255) NOT NULL, `approved` BOOLEAN NOT NULL DEFAULT FALSE, `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id)) ENGINE = INNODB"
         }
     }
 }
