@@ -1,6 +1,7 @@
 // Import Packages
 import { Client, Intents } from 'discord.js'
 import { createPool } from 'mysql2'
+import { readdirSync } from 'fs'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -15,7 +16,9 @@ export const client = new Client({
         Intents.FLAGS.GUILD_PRESENCES,
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.DIRECT_MESSAGES,
-        Intents.FLAGS.GUILD_INVITES
+        Intents.FLAGS.GUILD_INVITES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_VOICE_STATES
     ]
 })
 
@@ -37,9 +40,15 @@ export const DB = createPool({
 // Create XP & Invites Tables (Comment!)
 config.bot.xp.enabled && await Query(config.mysql.queries.xp)
 config.bot.invites.enabled && await Query(config.mysql.queries.invites)
+config.bot.maps.enabled && await Query(config.mysql.queries.maps)
+config.bot.voice.enabled && await Query(config.mysql.queries.voice)
+config.bot.invitelinks.enabled && await Query(config.mysql.queries.invitelinks)
+config.bot.setup.enabled && await Query(config.mysql.queries.setup)
 
 // Generate & Export Bot Invite Link
 export const InviteLink = `https://discord.com/oauth2/authorize?client_id=${process.env.BOT_CLIENT_ID}&permissions=${process.env.BOT_PERMISSIONS_HASH}&scope=${process.env.BOT_SCOPES.split(" ").join(`%20`)}`
+
+export const eventFiles = readdirSync('./discord/events').filter(file => file.endsWith('.js'))
 
 export const API = {
     status: 'OFFLINE'

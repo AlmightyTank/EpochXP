@@ -7,20 +7,22 @@ import log from '../libs/logging.js'
 import config from '../../config.js'
 dotenv.config()
 
-import { InviteLink, API } from '../../index.js'
+import { InviteLink, API, eventFiles } from '../../index.js'
 
 export default {
-	name: 'ready',
-	once: true,
+    name: 'ready',
+    once: true,
 
-	async execute(client) {
-		console.log(colors.cyan(`\n
+    async execute(client) {
+        console.log(colors.cyan(`\n
             [=====================================]
             [=] Development Mode: ${config.bot.dev.enabled ? "ON" : "OFF"}
+            [=] Debug XP Mode: ${config.bot.xp.debug.enabled ? "ON" : "OFF"}
+            [=] Debug RR Mode: ${config.bot.reaction.debug.enabled ? "ON" : "OFF"}
 
             [=] Logged In As: ${client.user.tag}
             [=] API: ${API.status} | http://${config.api.ip}:${config.api.port}
-            [=] Loaded ${client.commands.size} Commands
+            [=] Loaded ${client.commands.size} Commands && ${eventFiles.length} Events
 
             [=] Statistics:
             > Users: ${client.users.cache.size}
@@ -38,5 +40,5 @@ export default {
                 .replace(`{guilds}`, client.guilds.cache.size),
             { type: config.bot.status.type }
         )
-	}
+    }
 }

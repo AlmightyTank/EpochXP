@@ -1,10 +1,6 @@
-// Import Packages
-import { readdirSync } from 'fs'
 
-// Import Config & Init
-import { client } from '../../index.js'
-
-const eventFiles = readdirSync('./discord/events').filter(file => file.endsWith('.js'))
+// Import Config & Init & eventfiles
+import { client, eventFiles } from '../../index.js'
 
 for (const file of eventFiles) {
 	let event = await import(`../events/${file}`)
