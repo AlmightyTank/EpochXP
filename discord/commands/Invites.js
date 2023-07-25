@@ -20,30 +20,40 @@ export default {
     },
 
 	async execute(interaction) {
-
         const User = interaction.options.getUser("target") || interaction.user
 
-		let state = await Query(`SELECT * FROM ${config.mysql.tables.invites} WHERE inviterId = ? AND guildId = ?`, [User.id, interaction.guild.id])
+		let state = await Query(`SELECT * FROM ${config.mysql.tables.invites} WHERE user_id = ? AND guildId = ?`, [User.id, interaction.guild.id])
         state = state.results
 
         let users = ''
 
         if(state.length < 1) return interaction.reply({ embeds: [ Embed({ title: phrases.bot.main.error[config.language], message: phrases.bot.commands.invites.notFoundInvites[config.language], color: "RED" }) ]})
 
-        await state.map(async (e, i) => {
-            let user = await interaction.guild.members.fetch(e.invitedId)
-            users += `\`${i + 1}\` ${user.user.username}#${user.user.discriminator}\n`
-        })
+        console.log(state[0].invited_member_ids.length < 1 && state.length > 0);
+    
+        if(state[0].invited_member_ids.length < 1 && state.length > 0) return interaction.reply({ embeds: [ Embed({ title: phrases.bot.commands.invites.title[config.language].replace(`{invites}`, state[0].amount)} )]})
 
-        interaction.reply({ embeds: [
-            Embed({
-                title: phrases.bot.commands.invites.title[config.language].replace(`{invites}`, state.length),
-                fields: [
-                    { name: phrases.bot.commands.invites.members[config.language], value: users, inline: true }
-                ]
-            })
-        ]})
-        console.log(state)
-
+        console.log(state[0].invited_member_ids.length > 0 && state.length > 0);
+        
+        if(state[0].invited_member_ids.length > 0 && state.length > 0) {
+            let counter = 0;
+            for (const [i, e] of state.entries()) {
+                const invitedMemberIds = e.invited_member_ids.split(',')
+                for (const memberId of invitedMemberIds) {
+                    counter++;
+                    const user = await interaction.guild.members.fetch(memberId);
+                    users += `\`${counter}\` ${user.user.username}#${user.user.discriminator}\n`;
+                }
+            }
+    
+            interaction.reply({ embeds: [
+                Embed({
+                    title: phrases.bot.commands.invites.title[config.language].replace(`{invites}`, state[0].amount),
+                    fields: [
+                        { name: phrases.bot.commands.invites.members[config.language], value: users, inline: true }
+                    ]
+                })
+            ]})
+        }
 	}
 }

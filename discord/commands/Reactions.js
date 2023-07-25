@@ -33,7 +33,7 @@ export default {
 
         const guildId = interaction.guild.id;
 
-        const REACTION_ROLES_FILE = 'reactionRoles.json';
+        const REACTION_ROLES_FILE = './data/reactionRoles.json';
         let reactionRoles = [];
         try {
             if (fs.existsSync(REACTION_ROLES_FILE)) {

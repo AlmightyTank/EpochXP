@@ -57,14 +57,19 @@ export default {
                             const newLevel = config.bot.xp.levels.levels.filter(levels => updatedXP >= levels.xp).slice(-1)[0]
                             const oldLevel = config.bot.xp.levels.levels.filter(levels => state.amount >= levels.xp).slice(-1)[0]
                             const nextLevel = config.bot.xp.levels.levels.find(lvl => lvl.xp > updatedXP)
-                            
+  
                             const xpToNextLevel = nextLevel.xp - updatedXP
                             
                             if (config.bot.xp.debug.enabled) {
                                 console.log(colors.magenta(`            [=] ${member.user.tag} left voice channel after ${timeInVoiceChannel} minutes and earned ${earnedXP} exp. Now needs ${xpToNextLevel} more XP to reach level ${nextLevel.level}.`))
                             }
 
-                            if(config.bot.xp.levels.enabled && newLevel && newLevel.level != currentLevel) {
+                            if(config.bot.xp.levels.enabled && newLevel.level != currentLevel) {
+                                const row = await Query(`SELECT xp_role_ids, rank_channel_id FROM ${config.mysql.tables.setup} WHERE guild_id = ?`, [guildId]);
+                                const AllIDs = row.results[0].xp_role_ids.split(',');
+                                const oldID = AllIDs[oldLevel.role];
+                                const newID = AllIDs[newLevel.role];
+
                                 // Update his new level
                                 await Query(`UPDATE ${config.mysql.tables.xp} SET amount = ?, level = ? WHERE userId = ? AND guildId = ?`, [updatedXP, newLevel.level, userId, guildId])
                                 
@@ -73,15 +78,15 @@ export default {
                                     if (oldLevel === undefined || oldLevel === null || oldLevel === "" || oldLevel.role === undefined  || oldLevel.role === null  || oldLevel.role === "" || newLevel.role === oldLevel.role) {
                                         //They have no old roles
                                     } else {
-                                        role = guild.roles.cache.find(r => r.id === oldLevel.role)
+                                        role = guild.roles.cache.find(r => r.id === oldID)
                                         member.roles.remove(role)
                                     }
                                 }
 
                                 // Give him the new role
                                 if(newLevel.role) {
-                                    if (!member.roles.cache.has(newLevel.role)) {
-                                        const role = guild.roles.cache.find(r => r.id === newLevel.role); // Find the role with the matching id
+                                    if (!member.roles.cache.has(newID)) {
+                                        const role = guild.roles.cache.find(r => r.id === newID); // Find the role with the matching id
                                         member.roles.add(role)
                                     } else {
                                         if (config.bot.xp.debug.enabled) {
@@ -91,7 +96,7 @@ export default {
                                 }
 
                                 if(newLevel.bonus) {
-                                    const role = guild.roles.cache.find(r => r.id === newLevel.role); // Find the role with the matching id
+                                    const role = guild.roles.cache.find(r => r.id === newID); // Find the role with the matching id
                                     // Send an embed
                                     const Embd = Embed({
                                         title:
@@ -108,10 +113,10 @@ export default {
                                                 .replace(`{bonus}`, newLevel.bonus ? newLevel.bonus : phrases.bot.xp.raiseLevel.noBonus[config.language]),
                                         thumbnail: member.user.displayAvatarURL()
                                     })
-                                    const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                                    const ranksChannel = client.channels.cache.get(row.results[0].rank_channel_id)
                                     const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                                     await ranksMessage.react('🔥');
-                                } else if (!guild.roles.cache.has(r => r.id === oldLevel.role)) {
+                                } else if (!guild.roles.cache.has(r => r.id === oldID)) {
                                     if (oldLevel === undefined || oldLevel === null || oldLevel === "" || oldLevel.role === undefined  || oldLevel.role === null  || oldLevel.role === "" || newLevel.role === oldLevel.role) {
                                         // Send an embed
                                         const Embd = Embed({
@@ -127,11 +132,11 @@ export default {
                                                     .replace(`{user}`, member),
                                             thumbnail: member.user.displayAvatarURL()
                                         })
-                                        const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                                        const ranksChannel = client.channels.cache.get(row.results[0].rank_channel_id)
                                         const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                                         await ranksMessage.react('🔥');
                                     } else {
-                                        const role = guild.roles.cache.find(r => r.id === newLevel.role); // Find the role with the matching id
+                                        const role = guild.roles.cache.find(r => r.id === newID); // Find the role with the matching id
                                         // Send an embed
                                         const Embd = Embed({
                                             title:
@@ -147,7 +152,7 @@ export default {
                                                     .replace(`{role}`, role),
                                             thumbnail: member.user.displayAvatarURL()
                                         })
-                                        const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                                        const ranksChannel = client.channels.cache.get(row.results[0].rank_channel_id)
                                         const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                                         await ranksMessage.react('🔥');
                                     } 
@@ -166,7 +171,7 @@ export default {
                                                 .replace(`{user}`, member),
                                         thumbnail: member.user.displayAvatarURL()
                                     })
-                                    const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                                    const ranksChannel = client.channels.cache.get(row.results[0].rank_channel_id)
                                     const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                                     await ranksMessage.react('🔥');
                                 }

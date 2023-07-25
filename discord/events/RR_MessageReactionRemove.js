@@ -15,7 +15,7 @@ export default {
             console.log(colors.yellow(`            [=] ${reaction.emoji.name} reaction is removed to a message`));
         }
         
-        const REACTION_ROLES_FILE = 'reactionRoles.json';
+        const REACTION_ROLES_FILE = './data/reactionRoles.json';
         let reactionRoles = [];
         try {
             if (fs.existsSync(REACTION_ROLES_FILE)) {

@@ -14,7 +14,7 @@ export default {
 
     async execute(client) {
         // Read the reactionRoles data from the JSON file
-        const REACTION_ROLES_FILE = 'reactionRoles.json';
+        const REACTION_ROLES_FILE = './data/reactionRoles.json';
         let reactionRoles = [];
         try {
             if (fs.existsSync(REACTION_ROLES_FILE)) {
@@ -42,6 +42,7 @@ export default {
                 counter++;
 
                 if (counter === reactionRoles.roles.length) {
+                    await new Promise(resolve => setTimeout(resolve, 6000 * i)); // wait for 15 minutes
                     console.log(colors.cyan(`            [=] Loaded ${reactionRoles.roles.length} reaction roles.`));
                 }
             }, 6000 * i)

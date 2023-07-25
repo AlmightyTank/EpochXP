@@ -4,6 +4,7 @@ import Query from '../../functions/Query.js'
 import generateXP from '../../functions/generateXP.js'
 import { client } from '../../index.js'
 import Embed from '../libs/embed.js'
+import colors from 'chalk'
 
 const delay = new Set()
 
@@ -41,10 +42,20 @@ export default {
         const newLevel = config.bot.xp.levels.levels.filter(levels => updatedXP >= levels.xp).slice(-1)[0]
         const oldLevel = config.bot.xp.levels.levels.filter(levels => state.amount >= levels.xp).slice(-1)[0]
         const nextLevel = config.bot.xp.levels.levels.find(lvl => lvl.xp > updatedXP)
-                        
+        
+
+            
         const xpToNextLevel = nextLevel.xp - updatedXP
 
         if(config.bot.xp.levels.enabled && newLevel && newLevel.level != currentLevel) {
+            const isThere = await Query(`SELECT xp_role_ids, rank_channel_id FROM ${config.mysql.tables.setup} WHERE guild_id = ?`, [message.guild.id]);
+            if(isThere.results.length < 1) return;
+                const there = isThere.results[0];
+            
+            const AllIDs = there.xp_role_ids.split(',');
+            const oldID = AllIDs[oldLevel.role];
+            const newID = AllIDs[newLevel.role];
+            
             // Update his new level
             await Query(`UPDATE ${config.mysql.tables.xp} SET amount = ?, level = ? WHERE userId = ? AND guildId = ?`, [updatedXP, newLevel.level, message.member.user.id, message.guild.id])
             
@@ -53,15 +64,15 @@ export default {
                 if (oldLevel === undefined || oldLevel === null || oldLevel === "" || oldLevel.role === undefined  || oldLevel.role === null  || oldLevel.role === "" || newLevel.role === oldLevel.role) {
                     //They have no old roles
                 } else {
-                    role = message.guild.roles.cache.find(r => r.id === oldLevel.role)
+                    role = message.guild.roles.cache.find(r => r.id === oldID)
                     message.member.roles.remove(role)
                 }
             }
 
             // Give him the new role
             if(newLevel.role) {
-                if (!message.member.roles.cache.has(newLevel.role)) {
-                    role = message.guild.roles.cache.find(r => r.id === newLevel.role)
+                if (!message.member.roles.cache.has(newID)) {
+                    role = message.guild.roles.cache.find(r => r.id === newID)
                     message.member.roles.add(role)
                 } else {
                     if (config.bot.xp.debug.enabled) {
@@ -71,7 +82,7 @@ export default {
             }
 
             if (newLevel.bonus) {
-                role = message.guild.roles.cache.find(r => r.id === newLevel.role)
+                role = message.guild.roles.cache.find(r => r.id === newID)
                 // Send an embed
                 const Embd = Embed({
                     title:
@@ -88,10 +99,10 @@ export default {
                             .replace(`{bonus}`, newLevel.bonus ? newLevel.bonus : phrases.bot.xp.raiseLevel.noBonus[config.language]),
                     thumbnail: message.member.user.displayAvatarURL()
                 })
-                const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                const ranksChannel = client.channels.cache.get(there.rank_channel_id)
                 const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                 await ranksMessage.react('🔥');
-            } else if (!message.member.roles.cache.has(r => r.id === oldLevel.role)) {
+            } else if (!message.member.roles.cache.has(r => r.id === oldID)) {
                 if (oldLevel === undefined || oldLevel === null || oldLevel === "" || oldLevel.role === undefined  || oldLevel.role === null  || oldLevel.role === "" || newLevel.role === oldLevel.role) {
                     // Send an embed
                     const Embd = Embed({
@@ -107,11 +118,11 @@ export default {
                                 .replace(`{user}`, message.member),
                         thumbnail: message.member.user.displayAvatarURL()
                     })
-                    const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                    const ranksChannel = client.channels.cache.get(there.rank_channel_id)
                     const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                     await ranksMessage.react('🔥');
                 } else {
-                    role = message.guild.roles.cache.find(r => r.id === newLevel.role)
+                    role = message.guild.roles.cache.find(r => r.id === newID)
                     // Send an embed
                     const Embd = Embed({
                         title:
@@ -127,7 +138,7 @@ export default {
                                 .replace(`{role}`, role),
                         thumbnail: message.member.user.displayAvatarURL()
                     })
-                    const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                    const ranksChannel = client.channels.cache.get(there.rank_channel_id)
                     const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                     await ranksMessage.react('🔥');
                 }     
@@ -146,7 +157,7 @@ export default {
                             .replace(`{user}`, message.member),
                     thumbnail: message.member.user.displayAvatarURL()
                 })
-                const ranksChannel = client.channels.cache.get(config.ranks.discordChannel)
+                const ranksChannel = client.channels.cache.get(there.rank_channel_id)
                 const ranksMessage = await ranksChannel.send({embeds: [Embd]})
                 await ranksMessage.react('🔥');
             }

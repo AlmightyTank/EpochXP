@@ -18,14 +18,13 @@ export default {
         return data
     },
 
-	async execute(interaction) {
-        
+	async execute(interaction) {        
         let q = await Query(`
-            SELECT inviterId, COUNT(inviterId) as invites
+            SELECT user_id, SUM(amount) as invite_count
             FROM ${config.mysql.tables.invites}
             WHERE guildId = ?
-            GROUP BY inviterId
-            ORDER BY COUNT(inviterId) DESC
+            GROUP BY user_id
+            ORDER BY invite_count DESC
             LIMIT ?`,
             [ interaction.guild.id, config.bot.invites.commands.top.limit || 10 ]
         )
@@ -38,9 +37,9 @@ export default {
         let invites = ''
 
         await q.map(async (e, i) => {
-            let user = await interaction.guild.members.fetch(e.inviterId)
+            let user = await interaction.guild.members.fetch(e.user_id)
             users += `\`${i + 1}\` ${user.user.username}#${user.user.discriminator}\n`;
-            invites += `**${e.invites}**\n`
+            invites += `**${e.invite_count}**\n`
         })
 
         const Embd = Embed({

@@ -56,7 +56,7 @@ const config = {
             enabled: true,
         },
         setup: {
-            enabled: false,
+            enabled: true,
         },
         invitelinks: {
             enabled: true,
@@ -73,7 +73,13 @@ const config = {
         reaction: {
             enabled: true,
             debug: {
-                    enabled: false,
+                enabled: false,
+            },
+        },
+        wavingback: {
+            enabled: true,
+            debug: {
+                enabled: false,
             },
         },
         xp: {
@@ -94,316 +100,627 @@ const config = {
                 }
             },
             debug: {
-                enabled: false,
+                enabled: true,
             },
             levels: {
                 enabled: true,
                 removeAllRoles: true, // true = Clear all member "levels" roles before adding the new level role, false = just give him the new level role and keep the others
                 levels: [
                     {
+                        level: 0,
+                        xp: 0,
+                        role: 0,     //Mosin Maniacs
+                        bonus: null                     
+                    },
+                    {
                         level: 1,
                         xp: 10,
-                        role: "972229559296618552",     //Mosin Maniacs
+                        role: 0,     //Mosin Maniacs
                         bonus: null                     
                     },
                     {
                         level: 2,                       // Level number
                         xp: 50,                         // The needed XP for this level
-                        role: "972229559296618552",     // Role ID or null
+                        role: 0,     // Role ID or null
                         bonus: null                     // Bonus as text or null
                     },
                     {
                         level: 3,
                         xp: 100,
-                        role: "972229559296618552",
+                        role: 0,
                         bonus: null
                     },
                     {
                         level: 4,
-                        xp: 150,
-                        role: "972229559296618552",
+                        xp: 200,
+                        role: 0,
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 5,
-                        xp: 250,
-                        role: "972229559296618553",     //Flechette Master
+                        xp: 300,
+                        role: 1,     //Flechette Master
                         bonus: null
                     },
                     {
                         level: 6,
                         xp: 400,
-                        role: "972229559296618553",
+                        role: 1,
                         bonus: null
                     },
                     {
                         level: 7,
                         xp: 600,
-                        role: "972229559296618553",
+                        role: 1,
                         bonus: null
                     },
                     {
                         level: 8,
                         xp: 800,
-                        role: "972229559296618553",
+                        role: 1,
                         bonus: null
                     },
                     {
                         level: 9,
-                        xp: 1050,
-                        role: "972229559296618553",
+                        xp: 1000,
+                        role: 1,
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 10,
-                        xp: 1300,
-                        role: "972229559296618554",     //Hatchet Warrior
+                        xp: 1250,
+                        role: 2,     //Hatchet Warrior
                         bonus: null
                     },
                     {
                         level: 11,
-                        xp: 1600,
-                        role: "972229559296618554",
+                        xp: 1500,
+                        role: 2,
                         bonus: null
                     },
                     {
                         level: 12,
-                        xp: 1900,
-                        role: "972229559296618554",
+                        xp: 2000,
+                        role: 2,
                         bonus: null
                     },
                     {
                         level: 13,
                         xp: 2250,
-                        role: "972229559296618554",
+                        role: 2,
                         bonus: null
                     },
                     {
                         level: 14,
-                        xp: 2650,
-                        role: "972229559296618554",
+                        xp: 2500,
+                        role: 2,
                         bonus: null
                     },
                     {
                         level: 15,
-                        xp: 3000,
-                        role: "972229559296618555",     //Impact Nadder
+                        xp: 5000,
+                        role: 3,     //Impact Nadder
                         bonus: null
                     },
                     {
                         level: 16,
-                        xp: 5000,
-                        role: "972229559296618555",
+                        xp: 7500,
+                        role: 3,
                         bonus: null
                     },
                     {
                         level: 17,
-                        xp: 7500,
-                        role: "972229559296618555",
+                        xp: 10000,
+                        role: 3,
                         bonus: null
                     },
                     {
                         level: 18,
-                        xp: 9000,
-                        role: "972229559296618555",
+                        xp: 12500,
+                        role: 3,
                         bonus: null
                     },
                     {
                         level: 19,
-                        xp: 10000,
-                        role: "972229559296618555",
+                        xp: 15000,
+                        role: 3,
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 20,
-                        xp: 12500,
-                        role: "972229559317573672",     //Loot Goblins
+                        xp: 17500,
+                        role: 4,     //Loot Goblins
                         bonus: null
                     },
                     {
                         level: 21,
-                        xp: 15000,
-                        role: "972229559317573672",
+                        xp: 20000,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 22,
-                        xp: 17500,
-                        role: "972229559317573672",
+                        xp: 22500,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 23,
-                        xp: 20000,
-                        role: "972229559317573672",
+                        xp: 25000,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 24,
-                        xp: 22500,
-                        role: "972229559317573672",
+                        xp: 27500,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 25,
-                        xp: 25000,
-                        role: "972229559317573672",
+                        xp: 30000,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 26,
-                        xp: 27500,
-                        role: "972229559317573672",
+                        xp: 32500,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 27,
-                        xp: 30000,
-                        role: "972229559317573672",
+                        xp: 35000,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 28,
-                        xp: 32500,
-                        role: "972229559317573672",
+                        xp: 37500,
+                        role: 4,
                         bonus: null
                     },
                     {
                         level: 29,
-                        xp: 35000,
-                        role: "972229559317573672",
+                        xp: 40000,
+                        role: 4,
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 30,
-                        xp: 37500,
-                        role: "972229559317573673",     //A Flea Connoisseur
+                        xp: 42500,
+                        role: 5,     //A Flea Connoisseur
                         bonus: null
                     },
                     {
                         level: 31,
-                        xp: 40000,
-                        role: "972229559317573673",
+                        xp: 45000,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 32,
-                        xp: 42500,
-                        role: "972229559317573673",
+                        xp: 47500,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 33,
-                        xp: 45000,
-                        role: "972229559317573673",
+                        xp: 50000,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 34,
-                        xp: 47500,
-                        role: "972229559317573673",
+                        xp: 52500,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 35,
-                        xp: 50000,
-                        role: "972229559317573673",
+                        xp: 55000,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 36,
-                        xp: 52500,
-                        role: "972229559317573673",
+                        xp: 57500,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 37,
-                        xp: 55000,
-                        role: "972229559317573673",
+                        xp: 60000,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 38,
-                        xp: 57500,
-                        role: "972229559317573673",
+                        xp: 75000,
+                        role: 5,
                         bonus: null
                     },
                     {
                         level: 39,
-                        xp: 60000,
-                        role: "972229559317573673",
+                        xp: 100000,
+                        role: 5,
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 40,
-                        xp: 75000,
-                        role: "1079866812944097300",     //Dorms Chad
+                        xp: 125000,
+                        role: 6,     //Dorms Chad
                         bonus: null
                     },
                     {
                         level: 41,
-                        xp: 100000,
-                        role: "1079866812944097300",
+                        xp: 150000,
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 42,
-                        xp: 125000,
-                        role: "1079866812944097300",
+                        xp: 175000,
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 43,
-                        xp: 150000,
-                        role: "1079866812944097300",
+                        xp: 200000,
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 44,
-                        xp: 175000,
-                        role: "1079866812944097300",
+                        xp: 300000,
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 45,
-                        xp: 200000,
-                        role: "1079866812944097300",
+                        xp: 420420,
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 46,
-                        xp: 300000,
-                        role: "1079866812944097300",
+                        xp: 500000,
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 47,
                         xp: 420420,
-                        role: "1079866812944097300",
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 48,
-                        xp: 500000,
-                        role: "1079866812944097300",
+                        xp: 696969,
+                        role: 6,
                         bonus: null
                     },
                     {
                         level: 49,
-                        xp: 696969,
-                        role: "1079867200816545822",     //Labs Defender
+                        xp: 777777,
+                        role: 7,     //Labs Defender
                         bonus: null
                     },
                     // ==================================
                     {
                         level: 50,
+                        xp: 850000,
+                        role: 7,    //
+                        bonus: null
+                    },
+                    {
+                        level: 51,
+                        xp: 1000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 52,
+                        xp: 1250000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 53,
+                        xp: 1500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 54,
+                        xp: 1750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 55,
+                        xp: 2000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 56,
+                        xp: 2250000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 57,
+                        xp: 2500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 58,
+                        xp: 2750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 59,
+                        xp: 3000000,
+                        role: 7,     //Labs Defender
+                        bonus: null
+                    },
+                    // ==================================
+                    {
+                        level: 60,
+                        xp: 3250000,
+                        role: 7,    //
+                        bonus: null
+                    },
+                    {
+                        level: 61,
+                        xp: 3500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 62,
+                        xp: 3750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 63,
+                        xp: 4000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 64,
+                        xp: 4250000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 65,
+                        xp: 4500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 66,
+                        xp: 4750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 67,
+                        xp: 5000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 68,
+                        xp: 5250000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 69,
+                        xp: 5500000,
+                        role: 7,     //Labs Defender
+                        bonus: null
+                    },
+                    // ==================================
+                    {
+                        level: 70,
+                        xp: 5750000,
+                        role: 7,    //
+                        bonus: null
+                    },
+                    {
+                        level: 71,
+                        xp: 6000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 72,
+                        xp: 6250000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 73,
+                        xp: 6500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 74,
+                        xp: 6750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 75,
+                        xp: 7000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 76,
+                        xp: 7250000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 77,
+                        xp: 7500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 78,
+                        xp: 7750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 79,
+                        xp: 8000000,
+                        role: 7,     //Labs Defender
+                        bonus: null
+                    },
+                    // ==================================
+                    {
+                        level: 80,
+                        xp: 8250000,
+                        role: 7,    //
+                        bonus: null
+                    },
+                    {
+                        level: 81,
+                        xp: 8500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 82,
+                        xp: 8750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 83,
+                        xp: 9000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 84,
+                        xp: 9250000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 85,
+                        xp: 9500000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 86,
+                        xp: 9750000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 87,
+                        xp: 10000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 88,
+                        xp: 12000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 89,
+                        xp: 14000000,
+                        role: 7,     //Labs Defender
+                        bonus: null
+                    },
+                    // ==================================
+                    {
+                        level: 90,
+                        xp: 16000000,
+                        role: 7,    //
+                        bonus: null
+                    },
+                    {
+                        level: 91,
+                        xp: 18000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 92,
+                        xp: 20000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 93,
+                        xp: 25000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 94,
+                        xp: 30000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 95,
+                        xp: 40000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 96,
+                        xp: 50000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 97,
+                        xp: 60000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 98,
+                        xp: 70000000,
+                        role: 7,
+                        bonus: null
+                    },
+                    {
+                        level: 99,
+                        xp: 80000000,
+                        role: 7,     //Labs Defender
+                        bonus: null
+                    },
+                    // ==================================
+                    {
+                        level: 100,
                         xp: 100000000,
-                        role: "1079867200816545822",    //
+                        role: 7,     //Labs Defender
                         bonus: null
                     },
                 ]
@@ -419,19 +736,34 @@ const config = {
             },
             levels: {
                 1: {
-                    role: '1079560111124660316'
+                    role: 0
+                },
+                2: {
+                    role: 0
                 },
                 3: {
-                    role: '1079560862907498627'
+                    role: 1
+                },
+                4: {
+                    role: 1
                 },
                 5: {
-                    role: '1079560923443900416'
+                    role: 2
+                },
+                6: {
+                    role: 2
                 },
                 7: {
-                    role: '1079561016825892914'
+                    role: 3
+                },
+                8: {
+                    role: 3
+                },
+                9: {
+                    role: 3
                 },
                 10: {
-                    role: '1079561165753036820'
+                    role: 4
                 }
             }
         },
@@ -448,12 +780,12 @@ const config = {
             invitelinks: "InviteLinks" // Please Change The Create Table Query Too!
         },
         queries: { // Create Table Queries
-            xp: "CREATE TABLE IF NOT EXISTS EXP ( `guildId` VARCHAR(30) NOT NULL , `userId` VARCHAR(30) NOT NULL, `amount` INT(11) NOT NULL, `level` INT(5) NOT NULL, UNIQUE (`userId`)) ENGINE = INNODB",
+            xp: "CREATE TABLE IF NOT EXISTS EXP (`id` INT NOT NULL AUTO_INCREMENT , `guildId` VARCHAR(30) NOT NULL , `userId` VARCHAR(30) NOT NULL, `amount` INT(11) NOT NULL, `level` INT(5) NOT NULL, UNIQUE (`id`)) ENGINE = INNODB",
             invites: "CREATE TABLE IF NOT EXISTS Invites ( `id` INT NOT NULL AUTO_INCREMENT , `guildId` TEXT NOT NULL , `inviterId` TEXT NOT NULL , `invitedId` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = INNODB",
             maps: "CREATE TABLE IF NOT EXISTS Maps ( `id` INT NOT NULL AUTO_INCREMENT , `name` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = INNODB",
             voice: "CREATE TABLE IF NOT EXISTS Voice ( `guildId` VARCHAR(30) NOT NULL , `user_id` VARCHAR(50) NOT NULL , `join_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP , UNIQUE (`user_id`)) ENGINE = INNODB",
-            setup: "CREATE TABLE IF NOT EXISTS Setup ( `guildId` VARCHAR(30) NOT NULL , `logging_channelID` VARCHAR(50) NOT NULL , `rank_channelID` VARCHAR(50) NOT NULL , `newrankrole_channelID` VARCHAR(50) NOT NULL , `newrankrole_roleID` VARCHAR(50) NOT NULL , `reactiontoggle` NUMBER(1) , `newroletoggle` NUMBER(1) , `voicexptoggle` NUMBER(1) , `xptoggle` NUMBER(1) , UNIQUE (`guildId`)) ENGINE = INNODB",
-            invitelinks: "CREATE TABLE IF NOT EXISTS InviteLinks (`id` INT NOT NULL AUTO_INCREMENT, `user_id` VARCHAR(255) NOT NULL, `name` VARCHAR(255) NOT NULL, `relationship` VARCHAR(255) NOT NULL, `approved` BOOLEAN NOT NULL DEFAULT FALSE, `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id)) ENGINE = INNODB"
+            setup: "CREATE TABLE IF NOT EXISTS Setup ( `guild_id` VARCHAR(255) NOT NULL, `owner_id` VARCHAR(255) NOT NULL, `rank_channel_id` VARCHAR(255) NOT NULL, `welcome_channel_id` VARCHAR(255) NOT NULL, `departure_channel_id` VARCHAR(255) NOT NULL, `xp_role_ids` VARCHAR(255) NOT NULL, `invite_role_ids` VARCHAR(255) NOT NULL, `default_role_id` VARCHAR(255) NOT NULL, UNIQUE (`guild_id`)) ENGINE = INNODB",
+            invitelinks: "CREATE TABLE IF NOT EXISTS InviteLinks (`id` INT NOT NULL AUTO_INCREMENT, `user_id` VARCHAR(255) NOT NULL, `name` VARCHAR(255) NOT NULL, `relationship` VARCHAR(255) NOT NULL, `approved` BOOLEAN NOT NULL DEFAULT FALSE, `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, UNIQUE (`id`)) ENGINE = INNODB"
         }
     }
 }

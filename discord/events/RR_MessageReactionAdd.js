@@ -15,7 +15,7 @@ export default {
             console.log(colors.yellow(`            [=] ${reaction.emoji.name} reaction is added to a message`));
         }
         
-        const REACTION_ROLES_FILE = 'reactionRoles.json';
+        const REACTION_ROLES_FILE = './data/reactionRoles.json';
         let reactionRoles = [];
         try {
             if (fs.existsSync(REACTION_ROLES_FILE)) {
@@ -28,13 +28,7 @@ export default {
             console.error(err);
         }
 
-        const rr = reactionRoles.roles.find(
-            (rr) =>
-                rr.guildId === reaction.message.guild.id &&
-                rr.messageID === reaction.message.id &&
-                rr.channelID === reaction.message.channel.id &&
-                rr.reactions.includes(reaction.emoji.name)
-        );
+        const rr = reactionRoles.roles.find((rr) => rr.guildId === reaction.message.guild.id && rr.messageID === reaction.message.id && rr.channelID === reaction.message.channel.id && rr.reactions.includes(reaction.emoji.name));
         
         if (rr) {
                 config.bot.reaction.debug.enabled && console.log(colors.yellow('            [=] Found a match'));
@@ -46,12 +40,10 @@ export default {
                     if (rr.reactions[i] !== reaction.emoji.name) {
                     const role = guild.roles.cache.get(rr.roleIDs[i]);
                     await member.roles.remove(role);
-                    const otherReaction = reaction.message.reactions.cache.find(
-                        (r) => r.emoji.name === rr.reactions[i]
-                    );
-                    if (otherReaction) {
-                        await otherReaction.users.remove(user);
-                    }
+                    const otherReaction = reaction.message.reactions.cache.find((r) => r.emoji.name === rr.reactions[i]);
+                        if (otherReaction) {
+                            await otherReaction.users.remove(user);
+                        }
                     }
                 }
 

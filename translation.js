@@ -86,6 +86,70 @@ export default {
                 },
             },
         },
+        ir: {
+            raiseLevel: {
+                embedTitle: {
+                    /*
+                        @user = user tag
+                        @level = new level
+                    */
+                    en: "Gz! {user} gained a Invite Role!",
+                    he: "Gz! {user} קיבל תפקיד תגובה!",
+                },
+                embedMessage: {
+                    /*
+                        @user = user tag
+                        @level = the user new level
+                        @xp = the user new xp amount
+                        @bonus = the given bonus with the new level
+                        @role = the given role with the new level
+                    */
+                    en: ":partying_face: Congrats! :tada: {user}, gained **{role} Role**!\n\n**➜ Role:** {roles}",
+                    he: "\n\n**➜ Role:** {role}",
+                },
+                noBonus: {
+                    // If there isn't any bonus for the new level, write that instead
+                    en: "none.",
+                    he: ""
+                },
+                noRole: {
+                    // If there isn't any role for the new level, write that instead
+                    en: "none.",
+                    he: ""
+                }
+            },
+            lowerLevel: {
+                embedTitle: {
+                    /*
+                        @user = user tag
+                        @level = new level
+                    */
+                    en: "Gz! {user} lost a Reaction Role!",
+                    he: "Gz! {user} איבד תפקיד תגובה!",
+                },
+                embedMessage: {
+                    /*
+                        @user = user tag
+                        @level = the user new level
+                        @xp = the user new xp amount
+                        @bonus = the given bonus with the new level
+                        @role = the given role with the new level
+                    */
+                    en: "\n\n**➜ Role:** {role}",
+                    he: "\n\n**➜ Role:** {role}",
+                },
+                noBonus: {
+                    // If there isn't any bonus for the new level, write that instead
+                    en: "none.",
+                    he: ""
+                },
+                noRole: {
+                    // If there isn't any role for the new level, write that instead
+                    en: "none.",
+                    he: ""
+                }
+            },
+        },
         rr: {
             raiseLevel: {
                 embedTitle: {
@@ -225,6 +289,12 @@ export default {
             invitelink: {
                 description: {
                     en: "To get an invite link",
+                    he: "מציג פקודות שימושיות"
+                },
+            },
+            setup: {
+                description: {
+                    en: "To setup this Bot for your Server",
                     he: "מציג פקודות שימושיות"
                 },
             },
